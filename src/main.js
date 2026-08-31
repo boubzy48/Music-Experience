@@ -1,12 +1,12 @@
-import { planeGroup } from "./geometries/plane";
-import { camera } from "./setup/camera";
-import { controls } from "./setup/controls";
-import { renderer } from "./setup/renderer";
 import { scene } from "./setup/scene";
+import { camera } from "./setup/camera";
+import { renderer } from "./setup/renderer";
+import { controls } from "./setup/controls";
+import { createDo } from "./pitches";
 
 import "./setup/resize";
 
-scene.add(planeGroup);
+createDo();
 
 const animateFrame = () => {
   controls.update();
