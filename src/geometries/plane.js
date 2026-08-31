@@ -6,12 +6,12 @@ const material = new THREE.MeshBasicMaterial({
   side: THREE.DoubleSide,
 });
 
-const createPlane = () => {
+export const createPlane = () => {
   // HELPER
   const axesHelper = new THREE.AxesHelper();
 
   // GEOMETRY
-  const geometry = new THREE.PlaneGeometry(1, 1);
+  const geometry = new THREE.PlaneGeometry(2, 2);
 
   // PLANE
   const plane = new THREE.Mesh(geometry, material);
@@ -22,5 +22,3 @@ const createPlane = () => {
   planeGroup.add(plane, axesHelper);
   return planeGroup;
 };
-
-export { createPlane };

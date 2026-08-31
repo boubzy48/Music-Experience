@@ -9,8 +9,6 @@ const createDo = () => {
   return createPitch("Do").then((pitch) => {
     const group = new THREE.Group();
 
-    pitch.position.set(0, 0.5, 0);
-
     group.add(pitch, plane);
     scene.add(group);
   });
