@@ -1,10 +1,12 @@
-import { plane } from "./geometries/plane";
+import { planeGroup } from "./geometries/plane";
 import { camera } from "./setup/camera";
 import { controls } from "./setup/controls";
 import { renderer } from "./setup/renderer";
 import { scene } from "./setup/scene";
 
-scene.add(plane);
+import "./setup/resize";
+
+scene.add(planeGroup);
 
 const animateFrame = () => {
   controls.update();

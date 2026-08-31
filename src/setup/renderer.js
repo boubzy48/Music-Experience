@@ -1,9 +1,9 @@
 import * as THREE from "three";
+import { sizes } from "./constants";
 
-import { scene } from "./scene";
-import { camera } from "./camera";
-
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
+const canvas = document.querySelector("#scene");
+const renderer = new THREE.WebGLRenderer({ canvas });
+renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 export { renderer };

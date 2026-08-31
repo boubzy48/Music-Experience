@@ -1,9 +1,9 @@
 import * as THREE from "three";
-import { scene } from "./scene";
+import { sizes } from "./constants";
 
 const camera = new THREE.PerspectiveCamera(
   75,
-  window.innerWidth / window.innerHeight,
+  sizes.width / sizes.height,
   0.1,
   1000,
 );
