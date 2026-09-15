@@ -25,7 +25,7 @@ export const animatePitch = (pitch) => {
   );
   pitch.position.set(
     Math.sin(elapsedTime * 0.5) * -0.1,
-    Math.cos(elapsedTime * 0.5) * -0.1,
+    Math.cos(elapsedTime * 0.5) * -0.1 + 1,
     Math.sin(elapsedTime * 0.5) * -0.1,
   );
 

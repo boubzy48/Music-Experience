@@ -1,8 +1,7 @@
 import { renderer } from "./setup/renderer";
 
-import { createDo } from "./geometries/pitches";
+import { createPitchGroup } from "./geometries/createPitchGroup";
 import {
-  animateParticules,
   animatePitch,
   animateRectLight,
   animateScene,
@@ -11,12 +10,62 @@ import {
 
 import "./setup/resize";
 
-createDo().then(
-  ({ pitch, particules, rectLight, spotLightLeft, spotLightRight }) => {
-    animatePitch(pitch);
-    animateParticules(particules);
-    animateRectLight(rectLight);
-    animateSpotLights([spotLightLeft, spotLightRight]);
+createPitchGroup("Do").then(
+  ({ pitch, pitchGroup, rectLight, spotLightLeft, spotLightRight }) => {
+    pitchGroup.position.set(-3.5, 0, 0);
+    // animatePitch(pitch);
+    // animateRectLight(rectLight);
+    // animateSpotLights([spotLightLeft, spotLightRight]);
+  },
+);
+
+createPitchGroup("Re").then(
+  ({ pitch, pitchGroup, rectLight, spotLightLeft, spotLightRight }) => {
+    pitchGroup.position.set(-2.5, 0, 0);
+    // animatePitch(pitch);
+    // animateRectLight(rectLight);
+    // animateSpotLights([spotLightLeft, spotLightRight]);
+  },
+);
+
+createPitchGroup("Mi").then(
+  ({ pitch, pitchGroup, rectLight, spotLightLeft, spotLightRight }) => {
+    pitchGroup.position.set(-1.5, 0, 0);
+    // animatePitch(pitch);
+    // animateRectLight(rectLight);
+    // animateSpotLights([spotLightLeft, spotLightRight]);
+  },
+);
+createPitchGroup("Fa").then(
+  ({ pitch, pitchGroup, rectLight, spotLightLeft, spotLightRight }) => {
+    pitchGroup.position.set(0, 0, 0);
+    // animatePitch(pitch);
+    // animateRectLight(rectLight);
+    // animateSpotLights([spotLightLeft, spotLightRight]);
+  },
+);
+createPitchGroup("Sol").then(
+  ({ pitch, pitchGroup, rectLight, spotLightLeft, spotLightRight }) => {
+    pitchGroup.position.set(1.5, 0, 0);
+    // animatePitch(pitch);
+    // animateRectLight(rectLight);
+    // animateSpotLights([spotLightLeft, spotLightRight]);
+  },
+);
+createPitchGroup("La").then(
+  ({ pitch, pitchGroup, rectLight, spotLightLeft, spotLightRight }) => {
+    pitchGroup.position.set(2.5, 0, 0);
+    // animatePitch(pitch);
+    // animateRectLight(rectLight);
+    // animateSpotLights([spotLightLeft, spotLightRight]);
+  },
+);
+createPitchGroup("Si").then(
+  ({ pitch, pitchGroup, rectLight, spotLightLeft, spotLightRight }) => {
+    pitchGroup.position.set(3.5, 0, 0);
+    // animatePitch(pitch);
+    // animateRectLight(rectLight);
+    // animateSpotLights([spotLightLeft, spotLightRight]);
   },
 );
 

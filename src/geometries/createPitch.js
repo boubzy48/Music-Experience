@@ -1,19 +1,14 @@
 import * as THREE from "three";
 import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
 import { roboto } from "../fonts/roboto";
-import { createParticules } from "./particules";
-
-const particules = createParticules();
 
 // MATERIAL
-const standardMaterial = new THREE.MeshStandardMaterial();
-const lambertMaterial = new THREE.MeshLambertMaterial();
-const phongMaterial = new THREE.MeshPhongMaterial();
-const toonMaterial = new THREE.MeshToonMaterial();
+const standardMaterial = new THREE.MeshLambertMaterial();
 
 export const createPitch = (text) =>
   roboto.then((font) => {
     // HELPER
+    // NOTE: tester si l'initialiser en dehors de la fonction crée un problème quand il il y a deux plans.
     const axesHelper = new THREE.AxesHelper();
 
     // GEOMETRY
@@ -30,14 +25,12 @@ export const createPitch = (text) =>
     });
     geometry.center();
 
+    // OBJECT
     const pitch = new THREE.Mesh(geometry, standardMaterial);
     pitch.castShadow = true;
     pitch.receiveShadow = true;
+    pitch.position.set(0, 1, 0);
+    pitch.add(axesHelper);
 
-    // GROUP
-    const pitchWithParticules = new THREE.Group();
-    pitchWithParticules.position.set(0, 1, 0);
-    pitchWithParticules.add(pitch, axesHelper);
-
-    return { pitchWithParticules, pitch, particules };
+    return pitch;
   });
