@@ -4,7 +4,7 @@ body {
   overflow: hidden;
 }
 
-#canvas {
+#scene {
   position: fixed;
   top: 0;
   left: 0;

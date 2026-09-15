@@ -1,20 +1,29 @@
-import { scene } from "./setup/scene";
-import { camera } from "./setup/camera";
 import { renderer } from "./setup/renderer";
-import { controls } from "./setup/controls";
-import { createDo } from "./pitches";
+
+import { createDo } from "./geometries/pitches";
+import {
+  animateParticules,
+  animatePitch,
+  animateRectLight,
+  animateScene,
+  animateSpotLights,
+} from "./setup/animations";
 
 import "./setup/resize";
 
-createDo();
+createDo().then(
+  ({ pitch, particules, rectLight, spotLightLeft, spotLightRight }) => {
+    animatePitch(pitch);
+    animateParticules(particules);
+    animateRectLight(rectLight);
+    animateSpotLights([spotLightLeft, spotLightRight]);
+  },
+);
 
-const animateFrame = () => {
-  controls.update();
-  renderer.render(scene, camera);
-};
+animateScene();
 
 // Run on each frame
-renderer.setAnimationLoop(animateFrame);
+// renderer.setAnimationLoop(animateScene);
 
 // Add the scene to the DOM
 document.body.appendChild(renderer.domElement);

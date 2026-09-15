@@ -6,7 +6,10 @@ import { createParticules } from "./particules";
 const particules = createParticules();
 
 // MATERIAL
-const material = new THREE.MeshBasicMaterial({ color: 0xd1d4e6 });
+const standardMaterial = new THREE.MeshStandardMaterial();
+const lambertMaterial = new THREE.MeshLambertMaterial();
+const phongMaterial = new THREE.MeshPhongMaterial();
+const toonMaterial = new THREE.MeshToonMaterial();
 
 export const createPitch = (text) =>
   roboto.then((font) => {
@@ -27,12 +30,14 @@ export const createPitch = (text) =>
     });
     geometry.center();
 
-    const pitch = new THREE.Mesh(geometry, material);
+    const pitch = new THREE.Mesh(geometry, standardMaterial);
+    pitch.castShadow = true;
+    pitch.receiveShadow = true;
 
     // GROUP
-    const pitchGroup = new THREE.Group();
-    pitchGroup.position.set(0, 1, 0);
-    pitchGroup.add(pitch, axesHelper, particules);
+    const pitchWithParticules = new THREE.Group();
+    pitchWithParticules.position.set(0, 1, 0);
+    pitchWithParticules.add(pitch, axesHelper);
 
-    return pitchGroup;
+    return { pitchWithParticules, pitch, particules };
   });

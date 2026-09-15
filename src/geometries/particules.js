@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import { colorsPalette } from "./constants";
 
 // MATERIAL
 const material = new THREE.PointsMaterial();
@@ -16,14 +15,8 @@ export const createParticules = () => {
   const colors = new Float32Array(count * 3);
 
   for (let i = 0; i < count * 3; i++) {
-    const randomIndex = 1 + Math.floor(Math.random() * 3);
-    const color = new THREE.Color(Number(colorsPalette[randomIndex]));
-
     positions[i] = Math.random() - 0.5;
-
-    colors[i * 3] = color.r;
-    colors[i * 3 + 1] = color.g;
-    colors[i * 3 + 2] = color.b;
+    colors[i] = Math.random();
   }
 
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));

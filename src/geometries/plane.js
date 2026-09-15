@@ -1,10 +1,10 @@
 import * as THREE from "three";
 
 // MATERIAL
-const material = new THREE.MeshBasicMaterial({
-  color: 0xd1d4e6,
-  side: THREE.DoubleSide,
-});
+const standardMaterial = new THREE.MeshStandardMaterial();
+const lambertMaterial = new THREE.MeshLambertMaterial();
+const phongMaterial = new THREE.MeshPhongMaterial();
+const toonMaterial = new THREE.MeshToonMaterial();
 
 export const createPlane = () => {
   // HELPER
@@ -14,11 +14,11 @@ export const createPlane = () => {
   const geometry = new THREE.PlaneGeometry(2, 2);
 
   // PLANE
-  const plane = new THREE.Mesh(geometry, material);
-  plane.rotation.set(Math.PI * 0.5, 0, 0);
+  const plane = new THREE.Mesh(geometry, lambertMaterial);
+  plane.rotation.set(-Math.PI * 0.5, 0, 0);
+  plane.castShadow = true;
+  plane.receiveShadow = true;
+  plane.add(axesHelper);
 
-  // GROUP
-  const planeGroup = new THREE.Group();
-  planeGroup.add(plane, axesHelper);
-  return planeGroup;
+  return plane;
 };
