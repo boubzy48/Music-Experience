@@ -1,78 +1,14 @@
 import { renderer } from "./setup/renderer";
+import { createPlane } from "./geometries/createPlane";
+import { animateScene } from "./setup/animations";
+import { createPitch } from "./geometries/createPitch";
+import { notes } from "./setup/utils/constants";
 
-import { createPitchGroup } from "./geometries/createPitchGroup";
-import {
-  animatePitch,
-  animateRectLight,
-  animateScene,
-  animateSpotLights,
-} from "./setup/animations";
+createPlane();
 
-import "./setup/resize";
+for (let i = 0; i < notes.length; i++) {
+  const { text, position } = notes[i];
+  createPitch(text, position);
+}
 
-createPitchGroup("Do").then(
-  ({ pitch, pitchGroup, rectLight, spotLightLeft, spotLightRight }) => {
-    pitchGroup.position.set(-3.5, 0, 0);
-    // animatePitch(pitch);
-    // animateRectLight(rectLight);
-    // animateSpotLights([spotLightLeft, spotLightRight]);
-  },
-);
-
-createPitchGroup("Re").then(
-  ({ pitch, pitchGroup, rectLight, spotLightLeft, spotLightRight }) => {
-    pitchGroup.position.set(-2.5, 0, 0);
-    // animatePitch(pitch);
-    // animateRectLight(rectLight);
-    // animateSpotLights([spotLightLeft, spotLightRight]);
-  },
-);
-
-createPitchGroup("Mi").then(
-  ({ pitch, pitchGroup, rectLight, spotLightLeft, spotLightRight }) => {
-    pitchGroup.position.set(-1.5, 0, 0);
-    // animatePitch(pitch);
-    // animateRectLight(rectLight);
-    // animateSpotLights([spotLightLeft, spotLightRight]);
-  },
-);
-createPitchGroup("Fa").then(
-  ({ pitch, pitchGroup, rectLight, spotLightLeft, spotLightRight }) => {
-    pitchGroup.position.set(0, 0, 0);
-    // animatePitch(pitch);
-    // animateRectLight(rectLight);
-    // animateSpotLights([spotLightLeft, spotLightRight]);
-  },
-);
-createPitchGroup("Sol").then(
-  ({ pitch, pitchGroup, rectLight, spotLightLeft, spotLightRight }) => {
-    pitchGroup.position.set(1.5, 0, 0);
-    // animatePitch(pitch);
-    // animateRectLight(rectLight);
-    // animateSpotLights([spotLightLeft, spotLightRight]);
-  },
-);
-createPitchGroup("La").then(
-  ({ pitch, pitchGroup, rectLight, spotLightLeft, spotLightRight }) => {
-    pitchGroup.position.set(2.5, 0, 0);
-    // animatePitch(pitch);
-    // animateRectLight(rectLight);
-    // animateSpotLights([spotLightLeft, spotLightRight]);
-  },
-);
-createPitchGroup("Si").then(
-  ({ pitch, pitchGroup, rectLight, spotLightLeft, spotLightRight }) => {
-    pitchGroup.position.set(3.5, 0, 0);
-    // animatePitch(pitch);
-    // animateRectLight(rectLight);
-    // animateSpotLights([spotLightLeft, spotLightRight]);
-  },
-);
-
-animateScene();
-
-// Run on each frame
-// renderer.setAnimationLoop(animateScene);
-
-// Add the scene to the DOM
-document.body.appendChild(renderer.domElement);
+renderer.setAnimationLoop(animateScene);

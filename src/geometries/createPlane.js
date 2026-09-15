@@ -1,39 +1,23 @@
 import * as THREE from "three";
-
-const createPointLight = () => {
-  // LIGHT
-  const pointLight = new THREE.PointLight();
-  pointLight.position.set(0, 0.001, 0);
-  pointLight.castShadow = true;
-
-  // HELPER
-  const pointLightHelper = new THREE.PointLightHelper(pointLight);
-  pointLight.add(pointLightHelper);
-
-  return pointLight;
-};
+import { scene } from "../setup/scene";
 
 // MATERIAL
-const lambertMaterial = new THREE.MeshLambertMaterial();
+const material = new THREE.MeshBasicMaterial({
+  side: THREE.DoubleSide,
+});
 
 export const createPlane = () => {
   // HELPER
-  // NOTE: tester si l'initialiser en dehors de la fonction crée un problème quand il il y a deux plans.
-  const axesHelper = new THREE.AxesHelper();
-
-  // LIGHTS
-  const pointLight = createPointLight();
+  const helper = new THREE.AxesHelper();
 
   // GEOMETRY
-  const geometry = new THREE.PlaneGeometry(2, 2);
+  const geometry = new THREE.PlaneGeometry(14, 5);
 
-  // PLANE
-  const plane = new THREE.Mesh(geometry, lambertMaterial);
-  plane.rotation.set(-Math.PI * 0.5, 0, 0);
-  plane.castShadow = true;
-  plane.receiveShadow = true;
-  plane.add(axesHelper);
-  plane.attach(pointLight);
+  // OBJECT
+  const plane = new THREE.Mesh(geometry, material);
+  plane.rotation.set(Math.PI * -0.5, 0, 0);
+  plane.position.set(0, 0, 0);
+  plane.add(helper);
 
-  return plane;
+  scene.add(plane);
 };

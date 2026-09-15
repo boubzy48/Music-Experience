@@ -1,18 +1,18 @@
 import * as THREE from "three";
 import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
 import { roboto } from "../fonts/roboto";
+import { scene } from "../setup/scene";
 
 // MATERIAL
-const standardMaterial = new THREE.MeshLambertMaterial();
+const material = new THREE.MeshBasicMaterial();
 
-export const createPitch = (text) =>
+export const createPitch = (note, positionX) =>
   roboto.then((font) => {
     // HELPER
-    // NOTE: tester si l'initialiser en dehors de la fonction crée un problème quand il il y a deux plans.
     const axesHelper = new THREE.AxesHelper();
 
     // GEOMETRY
-    const geometry = new TextGeometry(text, {
+    const geometry = new TextGeometry(note, {
       font,
       size: 0.5,
       depth: 0.2,
@@ -26,11 +26,9 @@ export const createPitch = (text) =>
     geometry.center();
 
     // OBJECT
-    const pitch = new THREE.Mesh(geometry, standardMaterial);
-    pitch.castShadow = true;
-    pitch.receiveShadow = true;
-    pitch.position.set(0, 1, 0);
+    const pitch = new THREE.Mesh(geometry, material);
+    pitch.position.set(positionX, 1, 0);
     pitch.add(axesHelper);
 
-    return pitch;
+    scene.add(pitch);
   });
